@@ -5,10 +5,10 @@ namespace Acme;
 class Node
 {
     public int $value;
-    public Node $left;
-    public Node $right;
+    public Node|null $left;
+    public Node|null $right;
 
-    public function __construct(int $value, Node $left, Node $right)
+    public function __construct(int $value, Node|null $left, Node|null $right)
     {
         $this->value = $value;
         $this->left = $left;

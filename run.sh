@@ -15,6 +15,5 @@ printf "
 ================================================================================
 "
 (cd rust && cargo build --quiet --release)
-cp ./rust/target/release/binary_tree rust
-(cd rust && ./binary_tree)
+(cd rust && ./target/release/binary_tree)
 rm ./rust/binary_tree
