@@ -1,0 +1,17 @@
+{
+    "name": "rlcurrall/binary-tree-comparison",
+    "description": "Compare two binary trees for equality",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Robb Currall",
+            "email": "rlcurrall@gmail.com"
+        }
+    ],
+    "require": {
+        "nesbot/carbon": "^2.42"
+    },
+    "autoload": {
+        "psr-4": { "Acme\\": "src" }
+    }
+}

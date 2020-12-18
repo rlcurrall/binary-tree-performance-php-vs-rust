@@ -1,17 +1,14 @@
-use serde::{Deserialize};
-use std::time::Instant;
-use std::fs::File;
-use std::io::BufReader;
+use serde::Deserialize;
 
 #[derive(PartialEq, Deserialize)]
-struct Node {
+pub struct Node {
     pub left: Option<Box<Node>>,
     pub right: Option<Box<Node>>,
     pub value: u64,
 }
 
 impl Node {
-    fn num_nodes(&self) -> u64 {
+    pub fn num_nodes(&self) -> u64 {
         let mut count = 1;
 
         if let Some(left) = &self.left {
@@ -26,7 +23,7 @@ impl Node {
     }
 }
 
-fn binary_trees_equal(tree1: Node, tree2: Node) -> bool {
+pub fn binary_trees_equal(tree1: Node, tree2: Node) -> bool {
     if tree1.value != tree2.value {
         return false;
     }
@@ -57,23 +54,4 @@ fn binary_trees_equal(tree1: Node, tree2: Node) -> bool {
             false
         }
     }
-}
-
-fn fetch_tree(path: &str) -> Node {
-    let file = File::open(path).unwrap();
-    let reader = BufReader::new(file);
-    serde_json::from_reader(reader).unwrap()
-}
-
-fn main() {
-    let tree_1: Node = fetch_tree("tree_1.json");
-    let tree_2: Node = fetch_tree("tree_2.json");
-
-    let count = tree_1.num_nodes();
-
-    let now = Instant::now();
-    let is_equal = binary_trees_equal(tree_1, tree_2);
-    let elapsed = now.elapsed().as_micros();
-
-    println!("The trees are equal: {}\nExecution: {} microseconds for {} nodes", is_equal, elapsed, count);
 }
