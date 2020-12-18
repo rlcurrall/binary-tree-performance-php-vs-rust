@@ -4,18 +4,18 @@ namespace Acme;
 
 class Node
 {
-    public $left;
-    public $right;
-    public $value;
+    public int $value;
+    public Node $left;
+    public Node $right;
 
-    public function __construct($value, $left, $right)
+    public function __construct(int $value, Node $left, Node $right)
     {
         $this->value = $value;
         $this->left = $left;
         $this->right = $right;
     }
 
-    public function num_nodes()
+    public function num_nodes(): int
     {
         $count = 1;
         if ($this->left) {
@@ -27,7 +27,7 @@ class Node
         return $count;
     }
 
-    public static function from_object(object $data)
+    public static function from_object(object $data): self
     {
         $left = $data->left ? static::from_object($data->left) : null;
         $right = $data->right ? static::from_object($data->right) : null;
@@ -36,7 +36,7 @@ class Node
     }
 }
 
-function binary_trees_equal(Node $tree1, Node $tree2)
+function binary_trees_equal(Node $tree1, Node $tree2): bool
 {
     if ($tree1->value !== $tree2->value) {
         return false;
